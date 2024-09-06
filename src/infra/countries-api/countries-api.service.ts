@@ -9,7 +9,9 @@ export class CountriesApiService {
         'https://restcountries.com/v3.1/name/' + countryName,
       );
     } catch (error) {
-      Logger.error('Countries API error: ' + error.message);
+      const strError = 'Countries API error: ' + error.message;
+      Logger.error(strError);
+      throw new Error(strError);
     }
   }
 }

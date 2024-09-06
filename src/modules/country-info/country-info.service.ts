@@ -6,7 +6,12 @@ export class CountryInfoService {
   constructor(private readonly countriesAPI: CountriesApiService) {}
 
   async getCountryInfo(countryName: string): Promise<string> {
-    const response = await this.countriesAPI.getCountryInfoByName(countryName);
-    return JSON.stringify(response.data[0]);
+    try {
+      const response =
+        await this.countriesAPI.getCountryInfoByName(countryName);
+      return JSON.stringify(response.data[0]);
+    } catch (error) {
+      throw new Error(error.message);
+    }
   }
 }
