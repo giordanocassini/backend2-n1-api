@@ -13,13 +13,18 @@ export class CountryInfoService {
     try {
       const countriesAPIResponse =
         await this.countriesAPI.getCountryInfoByName(countryName);
+
       const { cca2 } = countriesAPIResponse.data[0];
       if (!cca2)
         throw new Error('Country abreviation not found for ' + countryName);
+
       const newsAPIResponse = await this.newsAPI.getNewsByCountry(cca2);
+
       const countryInfoObj = {
         countryInfo: countriesAPIResponse.data[0],
-        firstFoundNews: newsAPIResponse.data.articles[0],
+        firstFoundNews: newsAPIResponse.data.articles[0]
+          ? newsAPIResponse.data.articles[0]
+          : 'No news found for this coutry',
       };
       return JSON.stringify(countryInfoObj);
     } catch (error) {
