@@ -6,7 +6,7 @@ import { NewsApiService } from 'src/infra/news-api/news-api.service';
 export class CountryInfoService {
   constructor(
     private readonly countriesAPI: CountriesApiService,
-    private readonly newsAPI: NewsApiService, // usar este obj pra fazer a req a api de noticias.
+    private readonly newsAPI: NewsApiService,
   ) {}
 
   async getCountryInfo(countryName: string): Promise<string> {
