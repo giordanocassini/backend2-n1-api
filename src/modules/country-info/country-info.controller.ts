@@ -18,10 +18,7 @@ export class CountryInfoController {
     try {
       return await this.countryInfoService.getCountryInfo(countryName);
     } catch (error) {
-      throw new HttpException(
-        'Countries API error: ' + error.message,
-        HttpStatus.NOT_FOUND,
-      );
+      throw new HttpException(error.message, HttpStatus.NOT_FOUND);
     }
   }
 }
